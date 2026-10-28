@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    html, body{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: Arial, sans-serif;
+        background-color: antiquewhite;
+    }
+    .box{
+        width: 300px;
+        height: 300px;
+        background-color: aqua;
+        text-align: center;
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0 4px 10px black;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        gap: 30px;
+        transition: 0.3s;
+    }
+    input {
+        width: 60px;
+        height: 30px;
+        cursor: pointer;
+    }
+    button{
+        padding: 10px 20px;
+        border: none;
+        border-radius: 7px;
+        cursor: pointer;
+        background-color: rgb(148, 118, 178);
+        color: white;
+
+    }
+    .box:hover{
+        transform: translateY(-10px);
+        box-shadow: 0 4px 10px yellow;
+    }
+    button:hover{
+        background-color: #444;
+        color: white;
+    }
+
+</style>
+<body>
+    <div class="box">
+
+        <h1>color picker</h1>
+
+        <input type="color" id="color-picker">
+
+        <p id="colorCode">#000000</p>
+
+        <button id="copyBtn" >copy color</button>
+    </div>
+    
+
+    <script>
+        let colorPicker = document.getElementById("color-picker");
+        let colorCode = document.getElementById("colorCode");
+        let copyBtn = document.getElementById("copyBtn");
+
+        colorPicker.addEventListener("input", function(){
+            copyBtn.textContent = "copy color";
+            let color = colorPicker.value;
+
+            document.body.style.backgroundColor = color;
+            colorCode.textContent = color;
+        })
+
+        copyBtn.addEventListener("click", function(){
+            navigator.clipboard.writeText(colorCode.textContent);
+            copyBtn.textContent = "copied!"
+            alert("text copied!");
+        })
+
+    </script>
+</body>
+</html>
